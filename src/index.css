@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-brand-cream text-brand-dark font-sans antialiased overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', 'Poppins', sans-serif;
+    @apply font-semibold text-brand-dark tracking-tight;
+  }
+}
+
+/* Custom transitions and styles */
+.glass-effect {
+  background: rgba(250, 249, 246, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 194, 209, 0.2);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #9333EA 0%, #FF85A1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient-pastel {
+  background: linear-gradient(135deg, #FFF0F3 0%, #F3E8FF 100%);
+}
+
+.bg-gradient-pink-purple {
+  background: linear-gradient(135deg, #FFC2D1 0%, #C084FC 100%);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-brand-cream;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-brand-pink/60 rounded-full hover:bg-brand-pink-dark/70 transition-colors;
+}
+
+.product-image-filter {
+  filter: contrast(1.05) saturate(1.1) brightness(1.02);
+  object-fit: cover;
+}
