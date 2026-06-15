@@ -53,7 +53,7 @@ const Gallery = () => {
                     <div className="flex items-center gap-2 mb-4">
                       <Info className="w-5 h-5 text-brand-pink-dark" />
                       <h4 className="font-bold text-sm text-brand-dark uppercase tracking-wider">
-                        Valores al por Mayor (Chapitas Espejo)
+                        Valores y Modelos ({cat.title})
                       </h4>
                     </div>
                     
@@ -73,6 +73,12 @@ const Gallery = () => {
                         </div>
                       ))}
                     </div>
+
+                    {cat.priceNote && (
+                      <p className="text-xs italic text-brand-dark/60 mt-4 text-left">
+                        {cat.priceNote}
+                      </p>
+                    )}
                   </div>
                 )}
 

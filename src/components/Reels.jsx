@@ -1,27 +1,61 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Instagram, Heart, ExternalLink } from 'lucide-react';
 
 const Reels = () => {
-  // Load Instagram embed script and process blockquotes
-  useEffect(() => {
-    if (window.instgrm) {
-      window.instgrm.Embeds.process();
-    } else {
-      const script = document.createElement('script');
-      script.src = 'https://www.instagram.com/embed.js';
-      script.async = true;
-      script.defer = true;
-      script.onload = () => {
-        if (window.instgrm) {
-          window.instgrm.Embeds.process();
+  const sectionRef = useRef(null);
+
+  const addTitlesToIframes = () => {
+    // Wait a brief moment for embeds to render, then inject the title attribute to the iframe
+    setTimeout(() => {
+      const iframes = document.querySelectorAll('iframe.instagram-media, iframe[src*="instagram.com"]');
+      iframes.forEach((iframe, idx) => {
+        if (!iframe.getAttribute('title')) {
+          iframe.setAttribute('title', `Video de Instagram ${idx + 1}`);
         }
-      };
-      document.body.appendChild(script);
+      });
+    }, 2000);
+  };
+
+  // Load Instagram embed script and process blockquotes when section comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (window.instgrm) {
+              window.instgrm.Embeds.process();
+              addTitlesToIframes();
+            } else {
+              const script = document.createElement('script');
+              script.src = 'https://www.instagram.com/embed.js';
+              script.async = true;
+              script.defer = true;
+              script.onload = () => {
+                if (window.instgrm) {
+                  window.instgrm.Embeds.process();
+                  addTitlesToIframes();
+                }
+              };
+              document.body.appendChild(script);
+            }
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: '200px' }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
     }
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (
-    <section id="videos" className="py-20 px-6 bg-brand-pink-light/40 border-y border-brand-pink/10">
+    <section ref={sectionRef} id="videos" className="py-20 px-6 bg-brand-pink-light/40 border-y border-brand-pink/10">
       <div className="max-w-7xl mx-auto">
         
         <div className="text-center max-w-2xl mx-auto mb-16 flex flex-col items-center gap-4">
@@ -40,7 +74,7 @@ const Reels = () => {
         {/* Reels Native Embed Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {/* Reel 1 */}
-          <div className="bg-white rounded-3xl overflow-hidden border border-brand-pink/20 shadow-premium flex flex-col min-h-[500px]">
+          <div className="bg-white rounded-3xl overflow-hidden border border-brand-pink/20 shadow-premium flex flex-col min-h-[500px]" aria-label="Reel de Instagram: Proceso Creativo" role="region">
             <div className="p-4 border-b border-brand-pink/10 flex items-center justify-between bg-white select-none">
               <div className="flex items-center gap-2">
                 <div className="bg-gradient-pink-purple p-1.5 rounded-full text-white">
@@ -55,6 +89,7 @@ const Reels = () => {
                 className="instagram-media" 
                 data-instgrm-permalink="https://www.instagram.com/reel/DY0vr-OAR2t/" 
                 data-instgrm-version="14"
+                title="Reel de Instagram del Proceso Creativo"
                 style={{ background: '#FFF', border: '0', borderRadius: '16px', margin: '0', padding: '0', width: '100%', maxWidth: '320px' }}
               >
                 <a href="https://www.instagram.com/reel/DY0vr-OAR2t/" target="_blank" rel="noopener noreferrer">
@@ -65,7 +100,7 @@ const Reels = () => {
           </div>
 
           {/* Reel 2 */}
-          <div className="bg-white rounded-3xl overflow-hidden border border-brand-pink/20 shadow-premium flex flex-col min-h-[500px]">
+          <div className="bg-white rounded-3xl overflow-hidden border border-brand-pink/20 shadow-premium flex flex-col min-h-[500px]" aria-label="Reel de Instagram: Empaque y Cuidado" role="region">
             <div className="p-4 border-b border-brand-pink/10 flex items-center justify-between bg-white select-none">
               <div className="flex items-center gap-2">
                 <div className="bg-gradient-pink-purple p-1.5 rounded-full text-white">
@@ -80,6 +115,7 @@ const Reels = () => {
                 className="instagram-media" 
                 data-instgrm-permalink="https://www.instagram.com/reel/DYuZCO7gImW/" 
                 data-instgrm-version="14"
+                title="Reel de Instagram de Empaque y Cuidado"
                 style={{ background: '#FFF', border: '0', borderRadius: '16px', margin: '0', padding: '0', width: '100%', maxWidth: '320px' }}
               >
                 <a href="https://www.instagram.com/reel/DYuZCO7gImW/" target="_blank" rel="noopener noreferrer">
@@ -90,7 +126,7 @@ const Reels = () => {
           </div>
 
           {/* Reel 3 */}
-          <div className="bg-white rounded-3xl overflow-hidden border border-brand-pink/20 shadow-premium flex flex-col min-h-[500px]">
+          <div className="bg-white rounded-3xl overflow-hidden border border-brand-pink/20 shadow-premium flex flex-col min-h-[500px]" aria-label="Reel de Instagram: Resultado Final" role="region">
             <div className="p-4 border-b border-brand-pink/10 flex items-center justify-between bg-white select-none">
               <div className="flex items-center gap-2">
                 <div className="bg-gradient-pink-purple p-1.5 rounded-full text-white">
@@ -105,6 +141,7 @@ const Reels = () => {
                 className="instagram-media" 
                 data-instgrm-permalink="https://www.instagram.com/reel/DYqypQjgk1_/" 
                 data-instgrm-version="14"
+                title="Reel de Instagram del Resultado Final"
                 style={{ background: '#FFF', border: '0', borderRadius: '16px', margin: '0', padding: '0', width: '100%', maxWidth: '320px' }}
               >
                 <a href="https://www.instagram.com/reel/DYqypQjgk1_/" target="_blank" rel="noopener noreferrer">

@@ -11,6 +11,7 @@ const About = () => {
             <img 
               src="/images/nosotros.png" 
               alt="Detalles Personalizados y Cajas de Regalo" 
+              loading="lazy"
               className="w-full h-full object-cover product-image-filter"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/50 to-transparent" />
@@ -42,14 +43,14 @@ const About = () => {
             <div className="flex items-start gap-3 bg-brand-cream p-4 rounded-2xl border border-brand-pink/20">
               <CheckCircle className="w-5 h-5 text-brand-pink-dark shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-bold text-sm text-brand-dark">Eventos y Celebraciones</h4>
+                <h3 className="font-bold text-sm text-brand-dark">Eventos y Celebraciones</h3>
                 <p className="text-xs text-brand-dark/65 mt-0.5">Recuerdos hermosos listos para regalar en tus fechas más importantes.</p>
               </div>
             </div>
             <div className="flex items-start gap-3 bg-brand-cream p-4 rounded-2xl border border-brand-pink/20">
               <CheckCircle className="w-5 h-5 text-brand-purple shrink-0 mt-0.5" />
               <div>
-                <h4 className="font-bold text-sm text-brand-dark">Peticiones Especiales</h4>
+                <h3 className="font-bold text-sm text-brand-dark">Peticiones Especiales</h3>
                 <p className="text-xs text-brand-dark/65 mt-0.5">Sublimación de tazas y cintas hechas con las frases y colores que tú elijas.</p>
               </div>
             </div>

@@ -44,6 +44,7 @@ const Footer = () => {
               <img 
                 src="/images/logo.png" 
                 alt="Encintados Gabriela Studio Logo" 
+                loading="lazy"
                 className="w-10 h-10 rounded-full border border-brand-pink/30 object-cover shadow-soft"
               />
               <span className="font-display text-lg font-bold text-gradient">
@@ -56,11 +57,11 @@ const Footer = () => {
           </div>
 
           {/* Quick links */}
-          <div className="flex justify-center gap-6 text-sm font-medium">
-            <a href="#" className="hover:text-brand-pink-dark transition-colors">Inicio</a>
-            <a href="#sobre-nosotros" className="hover:text-brand-pink-dark transition-colors">Nosotros</a>
-            <a href="#galeria" className="hover:text-brand-pink-dark transition-colors">Catálogo</a>
-            <a href="#videos" className="hover:text-brand-pink-dark transition-colors">Proceso</a>
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium">
+            <a href="#" className="hover:text-brand-pink-dark transition-colors py-2 px-2">Inicio</a>
+            <a href="#sobre-nosotros" className="hover:text-brand-pink-dark transition-colors py-2 px-2">Nosotros</a>
+            <a href="#galeria" className="hover:text-brand-pink-dark transition-colors py-2 px-2">Catálogo</a>
+            <a href="#videos" className="hover:text-brand-pink-dark transition-colors py-2 px-2">Proceso</a>
           </div>
 
           {/* Social media links */}

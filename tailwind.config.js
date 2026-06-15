@@ -10,14 +10,14 @@ export default {
         brand: {
           'pink-light': '#FFF0F3',   // Softest sweet pink
           'pink': '#FFC2D1',         // Delicate pastel pink
-          'pink-dark': '#FF85A1',    // Vibrant pink for call-to-actions
+          'pink-dark': '#C52B58',    // Vibrant deep rose pink for AA contrast text & buttons
           'purple-light': '#F3E8FF', // Light lilac/lavender
           'purple': '#C084FC',       // Sweet violet/purple pastel
           'purple-dark': '#9333EA',  // Deep purple for titles
           'cream': '#FAF9F6',        // Warm alabaster cream for background
           'dark': '#4A3E3D',         // Warm charcoal brown for premium typography
           'gold': '#E6C186',         // Champagne gold accents
-          'gold-dark': '#B89758',    // Darker gold for borders/hover
+          'gold-dark': '#8A6729',    // Darker gold for AA contrast text & borders
         }
       },
       fontFamily: {

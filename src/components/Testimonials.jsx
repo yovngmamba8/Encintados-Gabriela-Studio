@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Star, CheckCircle } from 'lucide-react';
+import { Heart, Star, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import { supabase } from '../supabaseClient';
 
 const Testimonials = () => {
@@ -11,6 +11,7 @@ const Testimonials = () => {
   const [newComment, setNewComment] = useState('');
   const [ratingHover, setRatingHover] = useState(0);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // Fetch approved testimonials from Supabase on mount
   useEffect(() => {
@@ -62,6 +63,7 @@ const Testimonials = () => {
       };
 
       setReviews([insertedReview, ...reviews]);
+      setCurrentIndex(0); // Go to the new review
       setNewName('');
       setNewLastName('');
       setNewRating(5);
@@ -75,6 +77,14 @@ const Testimonials = () => {
       console.error('Error submitting review:', err.message);
       alert('Hubo un problema al enviar tu reseña. Por favor, intenta de nuevo.');
     }
+  };
+
+  const nextReview = () => {
+    setCurrentIndex((prev) => (prev + 1) % reviews.length);
+  };
+
+  const prevReview = () => {
+    setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
   };
 
   return (
@@ -92,7 +102,7 @@ const Testimonials = () => {
         </p>
       </div>
 
-      {/* Reviews Grid */}
+      {/* Reviews Carousel */}
       <div className="mb-16">
         {reviews.length === 0 ? (
           <motion.div 
@@ -103,50 +113,84 @@ const Testimonials = () => {
             <div className="inline-flex p-3 bg-brand-pink-light rounded-full text-brand-pink-dark mb-4">
               <Heart className="w-6 h-6 fill-brand-pink-dark/20" />
             </div>
-            <h4 className="font-display font-bold text-lg text-brand-dark mb-2">Aún no hay testimonios</h4>
+            <h3 className="font-display font-bold text-lg text-brand-dark mb-2">Aún no hay testimonios</h3>
             <p className="text-sm text-brand-dark/70 leading-relaxed">
               ¡Sé la primera persona en compartir tu experiencia con nosotros! Completa el formulario de abajo para publicar tu reseña.
             </p>
           </motion.div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <AnimatePresence mode="popLayout">
-              {reviews.map((rev) => (
+          <div className="relative max-w-3xl mx-auto">
+            <div className="overflow-hidden px-4 md:px-12 py-4">
+              <AnimatePresence mode="wait">
                 <motion.div
-                  key={rev.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-white rounded-3xl p-6 border border-brand-pink/20 shadow-premium flex flex-col justify-between"
+                  key={currentIndex}
+                  initial={{ opacity: 0, x: 30, filter: 'blur(10px)' }}
+                  animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, x: -30, filter: 'blur(10px)' }}
+                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  className="bg-white rounded-3xl p-8 border border-brand-pink/20 shadow-premium flex flex-col items-center text-center mx-auto w-full"
                 >
-                  <div>
-                    {/* Rating Stars */}
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star 
-                          key={i} 
-                          className={`w-5 h-5 ${i < rev.rating ? 'text-brand-gold fill-brand-gold' : 'text-gray-200'}`} 
-                        />
-                      ))}
-                    </div>
-                    <p className="text-brand-dark/80 text-sm md:text-base italic leading-relaxed mb-6">
-                      "{rev.comment}"
-                    </p>
+                  {/* Rating Stars */}
+                  <div className="flex gap-1 mb-6">
+                    {[...Array(5)].map((_, i) => (
+                      <Star 
+                        key={i} 
+                        className={`w-6 h-6 ${i < reviews[currentIndex].rating ? 'text-brand-gold fill-brand-gold' : 'text-gray-200'}`} 
+                      />
+                    ))}
                   </div>
+                  <p className="text-brand-dark/80 text-base md:text-xl italic leading-relaxed mb-8 max-w-2xl">
+                    "{reviews[currentIndex].comment}"
+                  </p>
                   
-                  <div className="flex items-center gap-3 border-t border-brand-pink/10 pt-4">
+                  <div className="flex items-center gap-4">
                     {/* Initials Avatar */}
-                    <div className="w-10 h-10 rounded-full bg-brand-pink-light text-brand-pink-dark font-bold text-sm flex items-center justify-center border border-brand-pink/20 select-none uppercase">
-                      {rev.first_name ? rev.first_name[0] : ''}{rev.last_name ? rev.last_name[0] : ''}
+                    <div className="w-12 h-12 rounded-full bg-brand-pink-light text-brand-pink-dark font-bold text-base flex items-center justify-center border border-brand-pink/20 select-none uppercase">
+                      {reviews[currentIndex].first_name ? reviews[currentIndex].first_name[0] : ''}
+                      {reviews[currentIndex].last_name ? reviews[currentIndex].last_name[0] : ''}
                     </div>
-                    <div>
-                      <h4 className="font-bold text-sm text-brand-dark">{rev.first_name} {rev.last_name}</h4>
+                    <div className="text-left">
+                      <h3 className="font-bold text-brand-dark">{reviews[currentIndex].first_name} {reviews[currentIndex].last_name}</h3>
+                      <p className="text-xs text-brand-dark/60">Cliente Verificado</p>
                     </div>
                   </div>
                 </motion.div>
-              ))}
-            </AnimatePresence>
+              </AnimatePresence>
+            </div>
+
+            {/* Navigation Arrows */}
+            {reviews.length > 1 && (
+              <>
+                <button 
+                  onClick={prevReview}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -ml-2 md:-ml-6 bg-white hover:bg-brand-pink-light text-brand-dark hover:text-brand-pink-dark w-12 h-12 rounded-full flex items-center justify-center shadow-md border border-brand-pink/30 hover:scale-105 transition-all z-10"
+                  aria-label="Reseña Anterior"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button 
+                  onClick={nextReview}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 -mr-2 md:-mr-6 bg-white hover:bg-brand-pink-light text-brand-dark hover:text-brand-pink-dark w-12 h-12 rounded-full flex items-center justify-center shadow-md border border-brand-pink/30 hover:scale-105 transition-all z-10"
+                  aria-label="Siguiente Reseña"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </>
+            )}
+
+            {/* Pagination Dots */}
+            {reviews.length > 1 && (
+              <div className="flex justify-center gap-2 mt-6">
+                {reviews.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`h-2.5 rounded-full transition-all duration-300 ${currentIndex === idx ? 'w-6 bg-brand-pink-dark' : 'w-2.5 bg-brand-pink/40 hover:bg-brand-pink'}`}
+                    aria-label={`Ir a la reseña ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

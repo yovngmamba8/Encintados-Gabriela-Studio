@@ -14,25 +14,40 @@ export const CATEGORIES = [
     ]
   },
   {
-    id: 'sets-regalos',
-    title: 'Sets de Regalo y Cajas',
-    subtitle: 'Regalos armados con tote bags, tazas, chocolates y más',
-    description: 'Sorprende a esa persona especial con una caja de regalo premium. Cada set incluye productos personalizados combinados armónicamente, decorados con cintas de raso y tarjetas dedicatorias especiales.',
-    images: ['/images/cajas_1.png', '/images/cajas_2.png', '/images/Set de regalo.jpeg'],
-  },
-  {
     id: 'cintas',
     title: 'Cintas Personalizadas',
     subtitle: 'Especiales para instrumentos y eventos',
     description: 'Cintas de raso impresas con nombres, fechas o dedicatorias especiales. Ideales para envolver regalos premium, marcar instrumentos musicales, medallas o eventos corporativos con un toque de elegancia.',
-    images: ['/images/cintas_1.png', '/images/cintas_2.png'],
+    images: ['/images/Cinta margarita.jpeg', '/images/Cinta Belen.jpeg', '/images/Cinta Gabriela.jpeg', '/images/Cintas Especiales.jpeg'],
+    priceTable: [
+      { qty: 'Cinta margarita', price: '$2.000', unit: 'Colores personalizados', tag: 'Simple' },
+      { qty: 'Cinta Belen', price: '$2.500', unit: 'Letras valor adic.', tag: 'Recomendada' },
+      { qty: 'Cinta Gabriela', price: '$3.000', unit: 'Letras valor adic.', tag: 'Elegante' },
+      { qty: 'Cintas especiales', price: '$4.000', unit: 'Letras incluidas', tag: 'Premium' }
+    ],
+    priceNote: 'Todas nuestras cintas tienen precios al por mayor. El valor final se ajusta dependiendo de la cantidad solicitada.'
   },
   {
     id: 'tazas',
     title: 'Tazas y Recipientes',
     subtitle: 'Diseños exclusivos en sublimación y vinilo',
     description: 'Tazas de cerámica y recipientes de vidrio personalizados. Hechos con sublimación de alta definición y vinilo permanente premium. Perfectas para el café de la mañana o como un regalo corporativo de gran presencia.',
-    images: ['/images/tazas_1.png', '/images/Tazas.jpeg'],
+    images: ['/images/Tazas Fondo Blanco.jpeg', '/images/Tazas Full Color.jpeg', '/images/Taza Empavonada.jpeg', '/images/Taza + Cuchara.jpeg', '/images/Taza Magica.mp4'],
+    priceTable: [
+      { qty: 'Fondo Blanco', price: '$3.000', unit: 'Personalizada', tag: 'Clásica' },
+      { qty: 'Full Color', price: '$3.500', unit: 'Personalizada', tag: 'Vibrante' },
+      { qty: 'Empavonada', price: '$4.000', unit: 'Personalizada', tag: 'Elegante' },
+      { qty: 'Taza + Cuchara', price: '$4.500', unit: 'Personalizada', tag: 'Set' },
+      { qty: 'Taza Mágica', price: '$5.000', unit: 'Personalizada', tag: 'Sorpresa' }
+    ],
+    priceNote: 'Todas nuestras tazas tienen precios al por mayor. El valor final se ajusta dependiendo de la cantidad solicitada.'
+  },
+  {
+    id: 'sets-regalos',
+    title: 'Sets de Regalo y Cajas',
+    subtitle: 'Regalos armados con tote bags, tazas, chocolates y más',
+    description: 'Sorprende a esa persona especial con una caja de regalo premium. Cada set incluye productos personalizados combinados armónicamente, decorados con cintas de raso y tarjetas dedicatorias especiales.',
+    images: ['/images/cajas_1.png', '/images/cajas_2.png', '/images/Set de regalo.jpeg'],
   },
   {
     id: 'flores',

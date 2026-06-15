@@ -3,8 +3,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronRight, ShoppingBag, Heart, Award } from 'lucide-react';
 import { HERO_SLIDES, getWhatsAppLink } from '../data/constants';
 
+const TEXTS = {
+  tagline: "Diseño hecho a mano, 100% único",
+  titlePart1: "Crea con el corazón,",
+  titlePart2: "regala momentos y sonrisas.",
+  description: "En Encintados Gabriela Studio transformamos tus ideas en detalles únicos y personalizados, hechos a mano con amor, dedicación y creatividad.",
+  ctaWhatsApp: "Cotiza tu regalo hoy",
+  ctaWhatsAppMessage: "Hola! Me gustaría cotizar mi regalo hoy.",
+  ctaCatalog: "Ver Catálogo",
+  propPersonalizado: "Personalizado",
+  propAmorTitle: "Amor",
+  propAmorSub: "En cada detalle",
+  propEnviosTitle: "Envíos",
+  propEnviosSub: "A todo Chile",
+  badgeQuality: "Calidad Premium"
+};
+
 const Hero = () => {
   const [heroIndex, setHeroIndex] = useState(0);
+  const currentSlide = HERO_SLIDES.find((_, idx) => idx === heroIndex) || HERO_SLIDES[0] || { image: '', title: '', subtitle: '' };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -31,27 +48,27 @@ const Hero = () => {
           {/* Tagline */}
           <div className="inline-flex items-center gap-2 bg-brand-pink-light border border-brand-pink/30 px-4 py-1.5 rounded-full text-brand-pink-dark font-semibold text-xs md:text-sm self-center md:self-start shadow-sm">
             <Star className="w-3.5 h-3.5 fill-brand-pink-dark" />
-            <span>Diseño hecho a mano, 100% único</span>
+            <span>{TEXTS.tagline}</span>
           </div>
 
           <h1 className="font-display text-4xl md:text-6xl font-bold leading-tight text-brand-dark">
-            Crea con el corazón,<br />
-            <span className="text-gradient">regala momentos y sonrisas.</span>
+            {TEXTS.titlePart1}<br />
+            <span className="text-gradient">{TEXTS.titlePart2}</span>
           </h1>
 
           <p className="text-base md:text-lg text-brand-dark/75 max-w-xl leading-relaxed">
-            En Encintados Gabriela Studio transformamos tus ideas en detalles únicos y personalizados, hechos a mano con amor, dedicación y creatividad.
+            {TEXTS.description}
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mt-2">
             <a 
-              href={getWhatsAppLink('Hola! Me gustaría cotizar mi regalo hoy.')}
+              href={getWhatsAppLink(TEXTS.ctaWhatsAppMessage)}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto bg-brand-pink-dark hover:bg-brand-pink-dark/90 text-white px-8 py-4 rounded-full font-bold text-base shadow-soft hover:shadow-lg transition-all flex items-center justify-center gap-2 group hover:scale-[1.03] active:scale-[0.97]"
             >
-              <span>Cotiza tu regalo hoy</span>
+              <span>{TEXTS.ctaWhatsApp}</span>
               <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             <a 
@@ -59,7 +76,7 @@ const Hero = () => {
               className="w-full sm:w-auto bg-white hover:bg-brand-pink-light/30 text-brand-dark border border-brand-pink/40 px-8 py-4 rounded-full font-bold text-base transition-all flex items-center justify-center gap-2 hover:scale-[1.01]"
             >
               <ShoppingBag className="w-5 h-5 text-brand-pink-dark" />
-              Ver Catálogo
+              {TEXTS.ctaCatalog}
             </a>
           </div>
 
@@ -67,15 +84,15 @@ const Hero = () => {
           <div className="grid grid-cols-3 gap-4 border-t border-brand-pink/20 pt-8 mt-4 text-center">
             <div>
               <p className="font-display text-2xl md:text-3xl font-bold text-brand-pink-dark">100%</p>
-              <p className="text-xs text-brand-dark/65 font-medium mt-1">Personalizado</p>
+              <p className="text-xs text-brand-dark/65 font-medium mt-1">{TEXTS.propPersonalizado}</p>
             </div>
             <div>
-              <p className="font-display text-2xl md:text-3xl font-bold text-brand-purple">Amor</p>
-              <p className="text-xs text-brand-dark/65 font-medium mt-1">En cada detalle</p>
+              <p className="font-display text-2xl md:text-3xl font-bold text-brand-purple-dark">{TEXTS.propAmorTitle}</p>
+              <p className="text-xs text-brand-dark/65 font-medium mt-1">{TEXTS.propAmorSub}</p>
             </div>
             <div>
-              <p className="font-display text-2xl md:text-3xl font-bold text-brand-gold-dark">Envíos</p>
-              <p className="text-xs text-brand-dark/65 font-medium mt-1">A todo Chile</p>
+              <p className="font-display text-2xl md:text-3xl font-bold text-brand-gold-dark">{TEXTS.propEnviosTitle}</p>
+              <p className="text-xs text-brand-dark/65 font-medium mt-1">{TEXTS.propEnviosSub}</p>
             </div>
           </div>
 
@@ -99,8 +116,8 @@ const Hero = () => {
               <AnimatePresence mode="wait">
                 <motion.img 
                   key={heroIndex}
-                  src={HERO_SLIDES[heroIndex].image} 
-                  alt={HERO_SLIDES[heroIndex].title} 
+                  src={currentSlide.image} 
+                  alt={currentSlide.title} 
                   initial={{ opacity: 0, scale: 1.05 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
@@ -120,11 +137,11 @@ const Hero = () => {
                       exit={{ opacity: 0, y: -5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <h4 className="font-display font-bold text-brand-dark text-sm leading-tight">
-                        {HERO_SLIDES[heroIndex].title}
-                      </h4>
+                      <h3 className="font-display font-bold text-brand-dark text-sm leading-tight">
+                        {currentSlide.title}
+                      </h3>
                       <p className="text-xs text-brand-dark/60 font-medium mt-0.5">
-                        {HERO_SLIDES[heroIndex].subtitle}
+                        {currentSlide.subtitle}
                       </p>
                     </motion.div>
                   </AnimatePresence>
@@ -154,7 +171,7 @@ const Hero = () => {
               <div className="bg-brand-purple-light p-2 rounded-xl text-brand-purple-dark">
                 <Award className="w-5 h-5" />
               </div>
-              <span className="text-[10px] font-bold text-brand-dark/70">Calidad Premium</span>
+              <span className="text-[10px] font-bold text-brand-dark/70">{TEXTS.badgeQuality}</span>
             </motion.div>
           </div>
         </motion.div>

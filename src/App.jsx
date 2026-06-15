@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { lazy, Suspense, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 import { getWhatsAppLink } from './data/constants';
@@ -7,10 +7,17 @@ import { getWhatsAppLink } from './data/constants';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
-import Gallery from './components/Gallery';
 import Reels from './components/Reels';
-import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
+
+const Gallery = lazy(() => import('./components/Gallery'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
+
+const LoadingFallback = () => (
+  <div className="w-full py-20 flex justify-center items-center" aria-hidden="true">
+    <div className="w-8 h-8 border-4 border-brand-pink-light border-t-brand-pink-dark rounded-full animate-spin" />
+  </div>
+);
 
 function App() {
   const containerRef = useRef(null);
@@ -18,10 +25,21 @@ function App() {
   return (
     <div ref={containerRef} className="min-h-screen bg-brand-cream relative">
       <Header />
-      <Hero />
-      <About />
-      <Gallery />
-      <Reels />
+      
+      <main>
+        <Hero />
+        <About />
+        
+        <Suspense fallback={<LoadingFallback />}>
+          <Gallery />
+        </Suspense>
+        
+        <Reels />
+        
+        <Suspense fallback={<LoadingFallback />}>
+          <Testimonials />
+        </Suspense>
+      </main>
       
       {/* Floating WhatsApp Button */}
       <motion.div 
@@ -48,8 +66,7 @@ function App() {
           </span>
         </a>
       </motion.div>
-
-      <Testimonials />
+      
       <Footer />
     </div>
   );

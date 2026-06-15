@@ -44,6 +44,10 @@ const Header = () => {
             Proceso
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-pink-dark transition-all duration-300 group-hover:w-full" />
           </a>
+          <a href="#testimonios" className="text-brand-dark/85 hover:text-brand-pink-dark transition-colors relative group py-2">
+            Reseñas
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-pink-dark transition-all duration-300 group-hover:w-full" />
+          </a>
         </nav>
 
         {/* Desktop CTA Button */}
