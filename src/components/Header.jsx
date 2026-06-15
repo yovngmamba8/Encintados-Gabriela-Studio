@@ -111,6 +111,13 @@ const Header = () => {
               Proceso
             </a>
             <a 
+              href="#testimonios" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-brand-dark font-medium py-2 px-3 rounded-lg hover:bg-brand-pink-light/50 hover:text-brand-pink-dark transition-colors"
+            >
+              Reseñas
+            </a>
+            <a 
               href={getWhatsAppLink('Hola! Me gustaría cotizar un regalo personalizado.')}
               target="_blank"
               rel="noopener noreferrer"
