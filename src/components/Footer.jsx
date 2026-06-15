@@ -42,7 +42,7 @@ const Footer = () => {
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-3">
             <div className="flex items-center gap-2.5">
               <img 
-                src="/images/logo.png" 
+                src="images/logo.png" 
                 alt="Encintados Gabriela Studio Logo" 
                 loading="lazy"
                 className="w-10 h-10 rounded-full border border-brand-pink/30 object-cover shadow-soft"

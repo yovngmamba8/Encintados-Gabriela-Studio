@@ -18,7 +18,7 @@ export const CATEGORIES = [
     title: 'Cintas Personalizadas',
     subtitle: 'Especiales para instrumentos y eventos',
     description: 'Cintas de raso impresas con nombres, fechas o dedicatorias especiales. Ideales para envolver regalos premium, marcar instrumentos musicales, medallas o eventos corporativos con un toque de elegancia.',
-    images: ['/images/Cinta margarita.jpeg', '/images/Cinta Belen.jpeg', '/images/Cinta Gabriela.jpeg', '/images/Cintas Especiales.jpeg'],
+    images: ['images/Cinta margarita.jpeg', 'images/Cinta Belen.jpeg', 'images/Cinta Gabriela.jpeg', 'images/Cintas Especiales.jpeg'],
     priceTable: [
       { qty: 'Cinta margarita', price: '$2.000', unit: 'Colores personalizados', tag: 'Simple' },
       { qty: 'Cinta Belen', price: '$2.500', unit: 'Letras valor adic.', tag: 'Recomendada' },
@@ -32,7 +32,7 @@ export const CATEGORIES = [
     title: 'Tazas y Recipientes',
     subtitle: 'Diseños exclusivos en sublimación y vinilo',
     description: 'Tazas de cerámica y recipientes de vidrio personalizados. Hechos con sublimación de alta definición y vinilo permanente premium. Perfectas para el café de la mañana o como un regalo corporativo de gran presencia.',
-    images: ['/images/Tazas Fondo Blanco.jpeg', '/images/Tazas Full Color.jpeg', '/images/Taza Empavonada.jpeg', '/images/Taza + Cuchara.jpeg', '/images/Taza Magica.mp4'],
+    images: ['images/Tazas Fondo Blanco.jpeg', 'images/Tazas Full Color.jpeg', 'images/Taza Empavonada.jpeg', 'images/Taza-Cuchara.jpeg', 'images/Taza Magica.mp4'],
     priceTable: [
       { qty: 'Fondo Blanco', price: '$3.000', unit: 'Personalizada', tag: 'Clásica' },
       { qty: 'Full Color', price: '$3.500', unit: 'Personalizada', tag: 'Vibrante' },
@@ -47,14 +47,14 @@ export const CATEGORIES = [
     title: 'Sets de Regalo y Cajas',
     subtitle: 'Regalos armados con tote bags, tazas, chocolates y más',
     description: 'Sorprende a esa persona especial con una caja de regalo premium. Cada set incluye productos personalizados combinados armónicamente, decorados con cintas de raso y tarjetas dedicatorias especiales.',
-    images: ['/images/cajas_1.png', '/images/cajas_2.png', '/images/Set de regalo.jpeg'],
+    images: ['images/cajas_1.png', 'images/cajas_2.png', 'images/Set de regalo.jpeg'],
   },
   {
     id: 'flores',
     title: 'Flores Eternas',
     subtitle: 'Hermosos ramos de rosas de jabón',
     description: 'Hermosas y aromáticas rosas de jabón presentadas en ramos premium. Un detalle que dura para siempre, no se marchita y perfuma el ambiente de forma dulce y duradera.',
-    images: ['/images/flores_1.png', '/images/Ramo.jpeg'],
+    images: ['images/flores_1.png', 'images/Ramo.jpeg'],
   },
   {
     id: 'mundo-ideas',
@@ -62,41 +62,41 @@ export const CATEGORIES = [
     subtitle: 'Detalles solitarios que complementan cualquier regalo',
     description: 'Pequeños grandes detalles diseñados para complementar tus regalos o regalar por sí solos. Llaveros personalizados, lápices decorados, imanes temáticos y marca páginas hermosos que añaden un toque único.',
     images: [
-      '/images/Lapiz.jpeg',
-      '/images/Llavero.jpeg',
-      '/images/Llavero1.jpeg',
-      '/images/Llavero2.jpeg',
-      '/images/Iman.jpeg',
-      '/images/Imanes.jpeg',
-      '/images/Marca Páginas.jpeg',
-      '/images/Recuerdos.jpeg'
+      'images/Lapiz.jpeg',
+      'images/Llavero.jpeg',
+      'images/Llavero1.jpeg',
+      'images/Llavero2.jpeg',
+      'images/Iman.jpeg',
+      'images/Imanes.jpeg',
+      'images/Marca Páginas.jpeg',
+      'images/Recuerdos.jpeg'
     ]
   }
 ];
 
 export const HERO_SLIDES = [
   {
-    image: '/images/cajas_2.png',
+    image: 'images/cajas_2.png',
     title: 'Sets Temáticos',
     subtitle: 'Sublimación y Cintas premium'
   },
   {
-    image: '/images/cajas_1.png',
+    image: 'images/cajas_1.png',
     title: 'Cajas de Regalo',
     subtitle: 'Detalles hechos con amor'
   },
   {
-    image: '/images/Chapitas.jpeg',
+    image: 'images/Chapitas.jpeg',
     title: 'Chapitas Espejo',
     subtitle: 'Recuerdos personalizados'
   },
   {
-    image: '/images/Tazas.jpeg',
+    image: 'images/Tazas Fondo Blanco.jpeg',
     title: 'Tazas de Diseño',
     subtitle: 'Sublimación de alta definición'
   },
   {
-    image: '/images/Ramo.jpeg',
+    image: 'images/Ramo.jpeg',
     title: 'Flores Eternas',
     subtitle: 'Ramos que duran siempre'
   }

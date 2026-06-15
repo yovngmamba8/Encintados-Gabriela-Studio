@@ -9,7 +9,7 @@ const About = () => {
         <div className="relative order-2 md:order-1 flex justify-center">
           <div className="relative w-full max-w-[420px] aspect-[4/3] rounded-3xl overflow-hidden shadow-premium border border-brand-pink/20">
             <img 
-              src="/images/nosotros.png" 
+              src="images/nosotros.png" 
               alt="Detalles Personalizados y Cajas de Regalo" 
               loading="lazy"
               className="w-full h-full object-cover product-image-filter"

@@ -12,7 +12,7 @@ const Header = () => {
         {/* Logo container */}
         <a href="#" className="flex items-center gap-3 group">
           <img 
-            src="/images/logo.png" 
+            src="images/logo.png" 
             alt="Encintados Gabriela Studio Logo" 
             className="w-12 h-12 rounded-full border border-brand-pink/30 object-cover shadow-soft group-hover:scale-105 transition-transform duration-300"
           />
